@@ -1,3 +1,4 @@
+
 def pagination_builder(current_page, total_pages, boundaries, around):
     """Creates pagination for website """
 
@@ -19,14 +20,17 @@ def pagination_builder(current_page, total_pages, boundaries, around):
     results = []
     for i in range(1, boundaries + 1):
         if i <= total_pages:
-            results.append(str(i))
+            # prevent duplicates
+            if str(i) not in results:
+                results.append(str(i))
 
     # verify if elipse "..." is needed before current page
     if current_page > boundaries + around + 2:
         results.append("...")
 
     for i in range(max(boundaries + 1, current_page - around), min(current_page + around + 1, total_pages - boundaries + 1)):
-        results.append(str(i))
+        if str(i) not in results:
+            results.append(str(i))
 
     # verify if elipse is needed after current page
     if current_page < total_pages - boundaries - around - 1: 
@@ -35,7 +39,7 @@ def pagination_builder(current_page, total_pages, boundaries, around):
     # handle the building of the last section of pagination
     for i in range(total_pages - boundaries + 1, total_pages + 1):
         if i > 0:
-            results.append(str(i))
+            if str(i) not in results:
+                results.append(str(i))
 
     return " ".join(results)
-
