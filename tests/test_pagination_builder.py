@@ -14,3 +14,12 @@ def test_pagination_for_type_error():
         pagination_builder("1", 5, 2, 1)
     with pytest.raises(TypeError):
         pagination_builder(1, "5", 2, 1)
+        
+# test for value erros
+def test_pagination_for_value_error(): 
+    with pytest.raises(ValueError):
+        pagination_builder(-1, 5, 2, 1)
+    with pytest.raises(ValueError):
+        pagination_builder(1, -5, 2, 1)
+    with pytest.raises(ValueError):
+        pagination_builder(6, 5, -2, -1)
