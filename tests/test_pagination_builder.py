@@ -8,3 +8,9 @@ def test_valid_inputs():
     assert pagination_builder(700, 9000, 3, 1)  == "1 2 3 ... 699 700 701 ... 8998 8999 9000"
     assert pagination_builder(0, 0, 2, 2)  == ""
 
+# test for type errors
+def test_pagination_for_type_error():
+    with pytest.raises(TypeError):
+        pagination_builder("1", 5, 2, 1)
+    with pytest.raises(TypeError):
+        pagination_builder(1, "5", 2, 1)
